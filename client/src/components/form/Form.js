@@ -56,9 +56,9 @@ function Form({currentId, setCurrentId}) {
         <Paper className={`${classes.root} ${classes.paper}`} elevation={6}>
             <form autoComplete='off' className={classes.form} onSubmit={handleSubmit}>
                 <Typography variant='h6'>{currentId ? 'Edit' : 'Share Somthing'}</Typography>
-                <TextField required name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={handleChange}/>
-                <TextField required name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={handleChange}/>
-                <TextField required name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} onChange={handleChange}/>
+                <TextField required placeholder='Post Title' name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={handleChange}/>
+                <TextField required placeholder='Post Message' name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={handleChange}/>
+                <TextField required placeholder='tag1,tag2,...' name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} onChange={handleChange}/>
                 <div className={classes.fileInput}>
                     <FileBase
                         type="file"

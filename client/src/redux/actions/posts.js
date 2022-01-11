@@ -9,6 +9,7 @@ import { FETCH_ALL,
     FETCH_POST,
     COMMENT
 } from '../../constants/actionTypes'
+import { setAlertMsg } from './alert';
 
 export const getPosts = (page) => async (dispatch) => {
     try {
@@ -19,7 +20,7 @@ export const getPosts = (page) => async (dispatch) => {
 
     } catch(error) {
         dispatch({type: END_LOADING})
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -31,7 +32,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
         dispatch({type: END_LOADING})        
     } catch(error) {
         dispatch({type: END_LOADING})
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -44,7 +45,7 @@ export const getPost = (id) => async (dispatch) => {
 
     } catch(error) {
         dispatch({type: END_LOADING})
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -56,7 +57,7 @@ export const createPost = (post, naviagte) => async (dispatch) => {
         dispatch({type: CREATE, payload: data})
     } catch(error) {
         dispatch({type: END_LOADING})
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -64,8 +65,9 @@ export const updatePost = (id, post) => async (dispatch) => {
     try {
         const {data} = await servers.updatePost(id, post);
         dispatch({type: UPDATE, payload: data})
+        dispatch(setAlertMsg('Post updated successfully', 'success'))
     } catch(error) {
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -73,8 +75,9 @@ export const deletePost = (id) => async (dispatch) => {
     try {
         await servers.deletePost(id);
         dispatch({type: DELETE, payload: id})
+        dispatch(setAlertMsg('Post deleted successfully', 'success'))
     } catch(error) {
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -83,7 +86,7 @@ export const likePost = (id) => async (dispatch) => {
         const {data} = await servers.likePost(id);
         dispatch({type: UPDATE, payload: data})
     } catch(error) {
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -93,8 +96,7 @@ export const commentPost = (comment, id) => async (dispatch) => {
         dispatch({type: COMMENT, payload: data})
         return data.comments
     } catch(error) {
-        console.log(error)
-
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 
 }

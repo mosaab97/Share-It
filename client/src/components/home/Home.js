@@ -57,6 +57,7 @@ function Home() {
                   name='search'
                   variant='outlined'
                   label='Search'
+                  placeholder='Post Title'
                   fullWidth
                   value={search}
                   onChange={(e)=> setSearch(e.target.value)}
@@ -69,6 +70,7 @@ function Home() {
                   onDelete={handleDelete}
                   label="Search Tags"
                   variant='outlined'
+                  placeholder='add tag and press enter'
                 />
                 <Button className={classes.searchButton} color='primary' variant='contained' onClick={searchPost}>
                   Search

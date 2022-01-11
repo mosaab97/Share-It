@@ -1,5 +1,6 @@
 import * as servers from '../../services';
 import { AUTH } from '../../constants/actionTypes'
+import { setAlertMsg } from './alert';
 
 export const signup = (formData, navigate) => async (dispatch) => {
     try {
@@ -7,7 +8,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
         dispatch({type: AUTH, payload: data})
         navigate('/');
     } catch(error) {
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
 
@@ -17,6 +18,6 @@ export const signin = (formData, navigate) => async (dispatch) => {
         dispatch({type: AUTH, payload: data})
         navigate('/');
     } catch(error) {
-        console.log(error)
+        dispatch(setAlertMsg('Something went wrong, please try again', 'error'))
     }
 }
